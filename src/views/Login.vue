@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import {postRequest} from '../utils/api';
 export default {
   name: 'Login',
   data() {
@@ -52,9 +51,11 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           // alert('submit!');
-          postRequest('/doLogin',this.login).then(resp=>{
+          this.keyValueRequest('/doLogin',this.login).then(resp=>{
             if(resp){
-              // alert(JSON.stringify(resp))
+              // alert(JSON.stringify(resp.data.obj))
+              window.sessionStorage.setItem('user',JSON.stringify(resp.data.obj));
+             this.$router.replace('/home');
             }
           })
   

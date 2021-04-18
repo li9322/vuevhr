@@ -15,6 +15,9 @@ axios.interceptors.response.use(data => {
     Message.error({ message: data.data.msg });
     return;
   }
+  if(data.data.msg){
+    Message.success({message:data.data.msg})
+  }
   return data;
 }, error => {
   if (error.response.status == 504 || error.response.status == 404) {
@@ -29,7 +32,7 @@ axios.interceptors.response.use(data => {
 
 let base = '';
 
-export const postRequest = (url, params) => {
+export const keyValueRequest = (url, params) => {
   return axios({
     method: 'post',
     url: `${base}${url}`,
@@ -44,6 +47,14 @@ export const postRequest = (url, params) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
+  });
+}
+
+export const postRequest = (url, params) => {
+  return axios({
+    method: 'post',
+    url: `${base}${url}`,
+    data: params,
   });
 }
 
