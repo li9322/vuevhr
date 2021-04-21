@@ -7,7 +7,8 @@
           <el-dropdown class="userInfo"
                        @command="handleClick">
             <span class="el-dropdown-link">
-              {{user.name}}<i><img :src="user.userface" alt="用户头像"></i>
+              {{user.name}}<i><img :src="user.userface"
+                     alt="用户头像"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
@@ -19,8 +20,20 @@
         </div>
       </el-header>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
-        <el-main>Main</el-main>
+        <el-aside width="200px">
+          <el-menu router>
+            <el-submenu index="1" v-for="(item,index) in this.$router.options.routes" v-if="!item.hidden" :key="index">
+              <template slot="title">
+                <i class="el-icon-location"></i>
+                <span>{{item.name}}</span>
+              </template>
+              <el-menu-item :index="item.path" v-for="(item,indexj) in item.children" :key="indexj">{{item.name}}</el-menu-item>
+            </el-submenu> 
+          </el-menu>
+        </el-aside>
+        <el-main>
+          <router-view />
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -36,11 +49,9 @@ export default {
   },
   methods: {
     handleClick(cmd) {
-      let that=this
+      let that = this
       if (cmd == 'userinfo') {
-
       } else if (cmd == 'setting') {
-
       } else if (cmd == 'logout') {
         this.$confirm('此操作将注销登录, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -48,9 +59,9 @@ export default {
           type: 'warning',
         })
           .then(() => {
-            this.getRequest("/logout");
-            window.sessionStorage.removeItem("user");
-            this.$router.replace('/');
+            this.getRequest('/logout')
+            window.sessionStorage.removeItem('user')
+            this.$router.replace('/')
           })
           .catch(() => {
             this.$message({
@@ -84,15 +95,15 @@ export default {
   display: flex;
   align-items: center;
 }
-.el-dropdown-link img{
+.el-dropdown-link img {
   width: 48px;
   height: 48px;
   border-radius: 24px;
   margin-left: 8px;
 }
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
+/* .el-aside {
+  background-color: #fff;
+  color: #fff;
   text-align: center;
   line-height: 200px;
 }
@@ -102,5 +113,5 @@ export default {
   color: #333;
   text-align: center;
   line-height: 160px;
-}
+} */
 </style>
