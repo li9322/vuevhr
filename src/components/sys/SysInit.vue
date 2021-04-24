@@ -1,10 +1,10 @@
 <template>
-<div> 操作员管理</div>
+<div> 操作日志管理</div>
 </template>
 
 <script>
  export default {
-  name: 'SysHr'
+  name: 'SysInit'
 }
 </script>
 <style>

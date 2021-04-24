@@ -9,9 +9,21 @@ import {keyValueRequest} from './utils/api'
 import {postRequest} from './utils/api'
 import {deleteRequest} from './utils/api'
 import {putRequest} from './utils/api'
+import { initMenu } from './utils/menus'
+import 'font-awesome/css/font-awesome.min.css'
 
 
 Vue.use(Element)
+
+router.beforeEach((to, from, next) => {
+  if(to.path=='/'){
+    next();
+  }else{
+    initMenu(router,store);
+    next();
+  }
+ 
+})
 
 Vue.prototype.getRequest=getRequest;
 Vue.prototype.keyValueRequest=keyValueRequest;

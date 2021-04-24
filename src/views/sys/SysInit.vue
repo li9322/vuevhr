@@ -1,5 +1,5 @@
 <template>
-<div> 操作日志管理</div>
+<div> 初始化数据库</div>
 </template>
 
 <script>

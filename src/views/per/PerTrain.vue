@@ -1,5 +1,7 @@
 <template>
-
+   <div>
+      员工训练
+    </div>
 </template>
 
 <script>

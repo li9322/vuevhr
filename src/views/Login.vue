@@ -13,7 +13,7 @@
       <el-form-item label=""
                     prop="password">
         <el-input v-model="login.password"
-                  auto-complete="off"></el-input>
+                  auto-complete="off" @keydown.enter.native="submitLogin"></el-input>
       </el-form-item>
       <el-form-item class="loginRemember">
         <el-checkbox v-model="checked"></el-checkbox>
@@ -54,7 +54,7 @@ export default {
           this.keyValueRequest('/doLogin',this.login).then(resp=>{
             if(resp){
               // alert(JSON.stringify(resp.data.obj))
-              window.sessionStorage.setItem('user',JSON.stringify(resp.data.obj));
+              window.sessionStorage.setItem('user',JSON.stringify(resp.obj));
              this.$router.replace('/home');
             }
           })
