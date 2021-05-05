@@ -42,7 +42,7 @@
             <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>{{this.$router.currentRoute.name}}</el-breadcrumb-item>
           </el-breadcrumb>
-          <router-view />
+          <router-view class="homeRouterView" />
           <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
             欢迎来到微人事系统!
           </div>
@@ -94,6 +94,9 @@ export default {
 }
 </script>
 <style>
+.homeRouterView{
+  margin-top: 10px;
+}
 .homeWelcome{
   text-align: center;
   font-size: 30px;
