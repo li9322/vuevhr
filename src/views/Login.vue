@@ -55,7 +55,8 @@ export default {
             if(resp){
               // alert(JSON.stringify(resp.data.obj))
               window.sessionStorage.setItem('user',JSON.stringify(resp.obj));
-             this.$router.replace('/home');
+              let path=this.$route.query.redirect
+             this.$router.replace((path=='/' || path==undefined)?'/home':path);
             }
           })
   
